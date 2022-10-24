@@ -11,13 +11,15 @@ create procedure stpCCategory(
     end
 //
 
+drop procedure if exists stpRCategory;
 delimiter //
 create procedure stpRCategory()
 	begin 
 		select idCategory, name from category where idCatalogStatus = 1;
 	end
 //
-drop procedure stpUCategory;
+
+drop procedure if exists stpUCategory;
 delimiter //
 create procedure stpUCategory(
 		in idCategory_param int, 
@@ -29,7 +31,7 @@ create procedure stpUCategory(
 	end
 //
 
-drop procedure if exists tpDCategory;
+drop procedure if exists stpDCategory;
 delimiter //
 create procedure stpDCategory(
 		in idCatalogStatus_param int,
@@ -40,7 +42,7 @@ create procedure stpDCategory(
 		select idCategory, name from category where idCategory = idCategory_param;
 	end 
 //
-
+drop procedure if exists stpSCategory
 delimiter //
 create procedure stpSCategory(
     in name_param varchar(35)
@@ -49,6 +51,15 @@ begin
     select idCategory, name from category where name like concat('%',name_param,'%');
 end //
 
+drop procedure if exists stpGTIDCategory;
+delimiter //
+create procedure stpGTIDCategory(
+		in idCategory_param int
+	)
+	begin 
+		select idCategory, name from category where idCategory = idCategory_param;
+	end
+//
 
 
 call stpCCategory('Polos');
